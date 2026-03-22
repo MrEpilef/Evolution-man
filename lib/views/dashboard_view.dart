@@ -5,7 +5,7 @@ import '../models/mission_model.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     // Escutando o Controller para reagir a mudanças de XP ou novas missões
@@ -92,6 +92,30 @@ class DashboardView extends StatelessWidget {
     );
   }
 
+  // --- FUNÇÃO ABRIR PAINEL JOGARDOR ---
+  void abrirJanelaDeInformacao(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Título da Janela"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min, // Dica de Sênior: faz a janela não ocupar a tela toda
+            children: [
+              Text("Dado 1: Valor"),
+              Text("Dado 2: Valor"),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context), // Fecha a janelinha
+              child: Text("Fechar"),
+            ),
+          ],
+        );
+      },
+    );
+  }
   // FUNÇÃO: Abre o painel inferior para cadastrar a missão
   void _abrirFormularioMissao(BuildContext context, PlayerController controller) {
     final TextEditingController tituloController = TextEditingController();
